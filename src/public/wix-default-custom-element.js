@@ -13,4 +13,4 @@ class KoltsevayaGame extends HTMLElement {
   }
 }
 
-customElements.define("koltsevaya-game", KoltsevayaGame);
+customElements.define("wix-default-custom-element", KoltsevayaGame);
