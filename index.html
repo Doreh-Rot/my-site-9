@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>콜체바야선</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="cinematicScreen" class="cinematic-screen platform">
+      <img id="cinematicLogo" class="main-logo" src="./assets/logo-original.png" alt="Kolcevaya Line" />
+      <section class="cinematic-copy">
+        <p id="cinematicText"></p>
+        <div id="cinematicChoices" class="cinematic-choices"></div>
+      </section>
+    </main>
+
+    <main id="gameScreen" class="game-shell hidden">
+      <section id="storyPanel" class="story-panel" aria-live="polite">
+        <header class="topbar">
+          <div>
+            <p class="series">COLTHEVAYA</p>
+            <h1 id="stationTitle">역</h1>
+          </div>
+          <div class="top-actions">
+            <div class="date-actions">
+              <time id="currentDate" class="current-date">1950년 1월 1일</time>
+              <button id="vendingButton" class="ghost-button accent" type="button">자판기</button>
+            </div>
+            <div class="utility-actions">
+              <button id="saveButton" class="ghost-button" type="button">저장</button>
+              <button id="resetButton" class="ghost-button" type="button">처음부터</button>
+            </div>
+          </div>
+        </header>
+
+        <div id="routeStatus" class="route-status"></div>
+
+        <section class="choices hidden" id="choices" aria-label="선택지"></section>
+
+        <article id="dialogueBox" class="story-card dialogue-box" aria-live="polite">
+          <div class="story-meta">
+            <span id="nodeTitle">둘러보기</span>
+            <span id="depthLabel">조사</span>
+          </div>
+          <p id="dialogueText" class="dialogue-text"></p>
+          <span id="dialogueHint" class="dialogue-hint">클릭하여 계속</span>
+          <div class="legacy-output hidden" aria-hidden="true">
+            <p id="promptText"></p>
+            <p id="resultText"></p>
+            <div id="effectLog"></div>
+          </div>
+        </article>
+
+        <footer class="history-wrap">
+          <button id="backButton" class="text-button" type="button">이전 선택으로</button>
+          <ol id="historyList" class="history-list"></ol>
+        </footer>
+      </section>
+
+      <aside class="status-panel">
+        <div class="identity">
+          <span>신분</span>
+          <strong id="identityValue">미정</strong>
+        </div>
+        <div class="stat-card">
+          <div class="stat-head"><span>체력</span><strong id="healthValue">100</strong></div>
+          <div class="meter"><span id="healthBar"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-head"><span>정신력</span><strong id="mentalValue">100</strong></div>
+          <div class="meter"><span id="mentalBar"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-head"><span>허기</span><strong id="hungerValue">100</strong></div>
+          <div class="meter hunger"><span id="hungerBar"></span></div>
+        </div>
+
+        <section class="inventory">
+          <div class="inventory-head"><h2>소지품</h2><span id="inventoryCount">0</span></div>
+          <ul id="inventoryList"></ul>
+        </section>
+      </aside>
+    </main>
+
+    <main id="blackScreen" class="black-screen hidden">
+      <p id="blackMessage"></p>
+    </main>
+
+    <section id="itemDialog" class="item-dialog hidden" aria-modal="true" role="dialog" aria-labelledby="itemDialogTitle">
+      <div class="item-dialog-card">
+        <div id="itemDialogIcon" class="item-pixel-icon large" aria-hidden="true"></div>
+        <div class="item-dialog-copy">
+          <p class="series">ITEM</p>
+          <h2 id="itemDialogTitle">아이템</h2>
+          <p id="itemDialogDescription"></p>
+        </div>
+        <div class="item-dialog-actions">
+          <button id="itemUseButton" class="choice-button compact" type="button">
+            <strong>사용한다</strong><span>아이템 효과를 적용한다.</span>
+          </button>
+          <button id="itemCancelButton" class="choice-button compact" type="button">
+            <strong>사용하지 않는다</strong><span>소지품으로 돌아간다.</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="./data/game-data.js"></script>
+    <script src="./data/items-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
