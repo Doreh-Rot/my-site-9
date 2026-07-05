@@ -7,6 +7,70 @@ const identities = {
   infiltrator: "행사에 숨어든 이물질",
 };
 
+const itemIcons = {
+  "나침반": "compass.png",
+  "풀": "grass.png",
+  "통조림": "can.png",
+  "붉은 알약": "pill-red.png",
+  "푸른 알약": "pill-blue.png",
+  "흰 알약": "pill-white.png",
+  "수면제": "pill-white.png",
+  "행복해지는 알약": "pill-blue.png",
+  "물병": "water-bottle.png",
+  "라디오": "radio.png",
+  "총알": "bullet.png",
+  "빵": "bread.png",
+  "흑빵": "bread.png",
+  "고깃덩이": "meat.png",
+  "빨간색 무드등": "lamp-red.png",
+  "노란색 무드등": "lamp-yellow.png",
+  "파란색 무드등": "lamp-blue.png",
+  "음료수": "drink.png",
+  "음료": "drink.png",
+  "붕대": "bandage.png",
+  "소모품": "consumable.png",
+  "핏물": "blood.png",
+  "여성의 팔": "arm.png",
+  "남성의 팔": "arm.png",
+  "나뭇가지": "branch.png",
+  "여성의 다리": "leg.png",
+  "벌레": "bug.png",
+  "바위": "rock.png",
+  "현금": "cash.png",
+  "솜": "cotton.png",
+  "잭나이프": "knife.png",
+  "도끼": "axe.png",
+  "권총": "gun.png",
+  "망가진 권총": "gun.png",
+  "샷건": "gun.png",
+  "진통제": "painkiller.png",
+  "쿠키": "cookie.png",
+  "락스": "bleach.png",
+  "전화기": "telephone.png",
+  "와인": "wine.png",
+  "금반지": "ring-gold.png",
+  "은반지": "ring-silver.png",
+  "못": "bullet.png",
+  "진흙": "mud.png",
+  "치아": "tooth.png",
+  "혓바닥": "tongue.png",
+  "손톱 열 개 묶음": "nails.png",
+  "꿀단지": "honey.png",
+  "잼": "jam.png",
+  "심장": "meat.png",
+  "은색 클로시": "cloche.png",
+  "눈": "eye.png",
+  "위": "stomach.png",
+  "소장": "intestine.png",
+  "간": "stomach.png",
+  "술병": "liquor.png",
+  "앰플": "ampoule.png",
+  "선홍빛 앰플": "ampoule-red.png",
+  "피하주사": "injection.png",
+  "밧줄": "rope.png",
+  "종이 쪽지": "note.png",
+};
+
 const state = {
   screen: "cinematic",
   cinematicStage: "opening",
@@ -331,21 +395,16 @@ function findItem(name) {
   return (window.ITEM_DATA?.items || []).find((item) => item.name === name);
 }
 
-function itemIconClass(item) {
-  const text = `${item.type || ""} ${item.name || ""} ${item.description || ""}`;
-  if (/빵|통조림|물병|식량|고기|사과|풀/.test(text)) return "food";
-  if (/알약|붕대|약|소모품/.test(text)) return "medical";
-  if (/반지|목걸이|보석|금|은/.test(text)) return "trinket";
-  if (/총알|못|칼|무기/.test(text)) return "sharp";
-  if (/라디오|나침반|기계|아이템/.test(text)) return "tool";
-  return "odd";
+function itemIconPath(itemName) {
+  return `./assets/items/${itemIcons[itemName] || "consumable.png"}`;
 }
 
 function openItemDialog(itemName) {
   const item = findItem(itemName);
   if (!item) return;
   state.selectedItem = itemName;
-  els.itemDialogIcon.className = `item-pixel-icon large ${itemIconClass(item)}`;
+  els.itemDialogIcon.className = "item-pixel-icon large";
+  els.itemDialogIcon.style.setProperty("--item-icon", `url("${itemIconPath(item.name)}")`);
   els.itemDialogTitle.textContent = item.name;
   els.itemDialogDescription.textContent = item.description || "설명이 없습니다.";
   els.itemUseButton.disabled = !(item.useText && item.useText !== "-");
@@ -516,7 +575,7 @@ function renderInventory() {
     const row = document.createElement("li");
     row.className = "inventory-slot";
     row.innerHTML = `<button type="button" class="inventory-item">
-      <span class="item-pixel-icon ${itemIconClass(item)}" aria-hidden="true"></span>
+      <span class="item-pixel-icon" style="--item-icon: url('${itemIconPath(item.name)}')" aria-hidden="true"></span>
       <span class="item-name">${escapeHtml(name)}</span><strong class="item-count">${count}</strong>
     </button>`;
     row.querySelector("button").addEventListener("click", () => openItemDialog(name));

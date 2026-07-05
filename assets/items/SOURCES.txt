@@ -1,0 +1,9 @@
+Pixel item asset sources
+
+- @hala_ng free pixel assets (dot-share set)
+- Peripeteia / Lifthrasir community distributed pixel assets
+
+The original source archives and their usage notices were supplied by the
+project owner. Assets are used in this non-commercial game without claiming
+original authorship. Images are only resized by the browser with nearest-
+neighbor rendering; their colors and pixel artwork are unchanged.

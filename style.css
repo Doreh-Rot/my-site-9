@@ -543,22 +543,14 @@ h2 {
   position: relative;
   width: 34px;
   height: 34px;
-  border: 2px solid #101417;
-  background: #5b6470;
-  box-shadow: inset 4px 0 0 rgba(255, 255, 255, 0.18), inset -4px -4px 0 rgba(0, 0, 0, 0.34);
+  border: 0;
+  background-color: transparent;
+  background-image: var(--item-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
 }
-
-.item-pixel-icon::before {
-  content: "";
-  position: absolute;
-}
-
-.item-pixel-icon.food { background: #9a6d3d; }
-.item-pixel-icon.medical { background: #d8d3c4; }
-.item-pixel-icon.trinket { background: #2f3842; }
-.item-pixel-icon.sharp { background: #3f454d; }
-.item-pixel-icon.tool { background: #314758; }
-.item-pixel-icon.odd { background: #6d3850; }
 
 .item-pixel-icon.large {
   width: 88px;
